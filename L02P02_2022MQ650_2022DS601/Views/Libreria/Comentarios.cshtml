@@ -3,3 +3,57 @@
 *@
 @{
 }
+
+<div class="barra_superior">
+    <div class="logo_img"></div>
+    <div>
+        <h3>Comentarios por libros</h3>
+        <p>Seleccione el autor -> Seleccione el libro -> Se muestran los comentarios existentes -> Adicione un nuevo comentario</p>
+    </div>
+</div>
+
+<div class="container, container_progress">
+    <div>
+        <div class="">
+            <ul class="progressbar">
+                <li class="active">Autores</li>
+                <li>Libros</li>
+                <li>Comentarios Existentes</li>
+                <li>Nuevo Comentario</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="espaciador">
+</div>
+
+<div class="carta">
+    <div class ="invisible_card>
+        <div>
+            <h5 class="subtitulo">Autor:</h5>
+        </div>
+        <div>
+            <h5 class="subtitulo">Autor:</h5>
+        </div>
+    </divclass>
+</div>
+
+<div class="invisible_card">
+    <div>
+        <h5 class="subtitulo">Comentarios Existentes</h5>
+        @foreach (var comentario in (List<comentarios_libros>)ViewData["listadoDeComentarios"])
+        {
+            <div class="card">
+                <p><strong>Comentario: @comentario.comentarios</strong></p>
+                <p>@comentario.usuario</p>
+                <p>@comentario.created_at.ToString("dd/MM/yyyy HH:mm")</p>
+            </div>
+        }
+    </div>
+    <div>
+
+    </div>
+</div>
+    
+

@@ -136,7 +136,7 @@ body {
 .card {
     padding-left: 15px;
     padding-top:10px;
-    height:60px;
+    height:auto;
 }
 
 .espaciador {
