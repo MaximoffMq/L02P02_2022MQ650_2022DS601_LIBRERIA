@@ -39,7 +39,8 @@
             {
                 <li class="card">
                     <strong>@libro.nombre</strong>
-                    <button class="btn btn-success" style="position: absolute; top: 10px; right: 10px;" onclick="window.location.href='@Url.Action("Comentarios", "Libreria", new { id = libro.id })'">
+                    <br />
+                    <button class="btn btn-success" style="position: absolute; top: 10px; right: 10px;" onclick="window.location.href='@Url.Action("Comentarios", "Libreria", new { id = libro.id, nombre = libro.nombre, nombre_autor = @ViewData["autorSeleccionado"]})'">
                         Seleccionar
                     </button>
                 </li>

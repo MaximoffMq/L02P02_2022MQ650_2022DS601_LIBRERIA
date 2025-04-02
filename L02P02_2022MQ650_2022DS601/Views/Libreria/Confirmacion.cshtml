@@ -3,3 +3,69 @@
 *@
 @{
 }
+
+<div class="barra_superior">
+    <div class="logo_img"></div>
+    <div>
+        <h3>Comentarios por libros</h3>
+        <p>Seleccione el autor -> Seleccione el libro -> Se muestran los comentarios existentes -> Adicione un nuevo comentario</p>
+    </div>
+</div>
+
+<div class="container, container_progress">
+    <div>
+        <div class="">
+            <ul class="progressbar">
+                <li>Autores</li>
+                <li>Libros</li>
+                <li>Comentarios Existentes</li>
+                <li class="active">Nuevo Comentario</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="espaciador">
+</div>
+
+<div class="carta">
+    <div class="divflex">
+        <div class="w-50">
+            <h5 class="subtitulo">Autor: <span class="autor-seleccionado">@ViewBag.nombre_autor</span></h5>
+        </div>
+        <div class="w-50">
+            <h5 class="subtitulo">Libro: <span class="autor-seleccionado">@ViewBag.nombre</span></h5>
+        </div>
+    </div>
+</div>
+
+<div class="invisible_card">
+    <div class="w-50">
+        <h5 class="subtitulo">Comentarios Existentes</h5>
+        @foreach (var comentario in (List<comentarios_libros>)ViewData["listadoDeComentarios"])
+        {
+            <div class="card">
+                <p><strong>Comentario: @comentario.comentarios</strong></p>
+                <p>@comentario.usuario</p>
+                <p>@comentario.created_at.ToString("dd/MM/yyyy HH:mm")</p>
+            </div>
+        }
+    </div>
+    <div class="div_right">
+        <h5 class="subtitulo">Comentarios Existentes</h5>
+        <div class="">
+            @Html.Label("lblDescripcion", "Descripcion")
+        </div>
+        <div class="">
+            @Html.TextArea("descripcion", "", new { @class = "form-control", @placeholder = "Ingrese la descripcion", style = "height: 150px;" })
+        </div>
+        <div class="card mt-4 cardexito">
+            <div class="contenedor_btn">
+                Comentario Adicionado con exito!
+            </div>
+
+        </div>
+    </div>
+</div>
+
+

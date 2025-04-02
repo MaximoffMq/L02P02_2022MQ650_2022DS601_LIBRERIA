@@ -42,7 +42,7 @@ namespace L02P02_2022MQ650_2022DS601.Controllers
             return View();
         }
 
-        public IActionResult Comentarios(int id)
+        public IActionResult Comentarios(int id, string nombre, string nombre_autor)
         {
             // Obtener la lista de comentarios del libro con el id especificado
             var listaDeComentarios = (from m in _context.comentarios_libros
@@ -58,15 +58,45 @@ namespace L02P02_2022MQ650_2022DS601.Controllers
 
             // Pasar la lista de comentarios a la vista usando ViewData
             ViewData["listadoDeComentarios"] = listaDeComentarios;
+            ViewBag.nombre = nombre;
+            ViewBag.nombre_autor = nombre_autor;
+            ViewBag.id_libro = id;
 
             return View();
         }
 
-        public IActionResult Confirmacion()
+        [HttpPost]
+        public IActionResult Confirmacion(int id, string nombre, string nombre_autor, string descripcion)
         {
+            if (string.IsNullOrEmpty(descripcion))
+            {
+                ModelState.AddModelError("descripcion", "El comentario no puede estar vacío.");
+                return View();
+            }
+
+            var comentario = new comentarios_libros
+            {
+                id_libro = id,
+                comentarios = descripcion,
+                usuario = "Mario Morales",
+                created_at = DateTime.Now
+            };
+
+            _context.comentarios_libros.Add(comentario);
+            _context.SaveChanges();
+
+            var listaDeComentarios = _context.comentarios_libros
+                .Where(m => m.id_libro == id)
+                .ToList();
+
+            ViewData["listadoDeComentarios"] = listaDeComentarios;
+            ViewBag.nombre = nombre;
+            ViewBag.nombre_autor = nombre_autor;
+            ViewBag.id_libro = id;
+
             return View();
         }
 
-        
+
     }
 }

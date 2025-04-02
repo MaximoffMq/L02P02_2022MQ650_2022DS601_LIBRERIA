@@ -16,9 +16,9 @@
     <div>
         <div class="">
             <ul class="progressbar">
-                <li class="active">Autores</li>
+                <li>Autores</li>
                 <li>Libros</li>
-                <li>Comentarios Existentes</li>
+                <li class="active">Comentarios Existentes</li>
                 <li>Nuevo Comentario</li>
             </ul>
         </div>
@@ -29,18 +29,18 @@
 </div>
 
 <div class="carta">
-    <div class ="invisible_card>
-        <div>
-            <h5 class="subtitulo">Autor:</h5>
+    <div class ="divflex">
+        <div class="w-50">
+            <h5 class="subtitulo">Autor: <span class="autor-seleccionado">@ViewBag.nombre_autor</span></h5>
         </div>
-        <div>
-            <h5 class="subtitulo">Autor:</h5>
+        <div class="w-50">
+            <h5 class="subtitulo">Libro: <span class="autor-seleccionado">@ViewBag.nombre</span></h5>
         </div>
-    </divclass>
+    </div>
 </div>
 
 <div class="invisible_card">
-    <div>
+    <div class="w-50">
         <h5 class="subtitulo">Comentarios Existentes</h5>
         @foreach (var comentario in (List<comentarios_libros>)ViewData["listadoDeComentarios"])
         {
@@ -51,8 +51,29 @@
             </div>
         }
     </div>
-    <div>
+    <div class="div_right">
+        <h5 class="subtitulo">Comentarios Existentes</h5>
+        @using (Html.BeginForm("Confirmacion", "Libreria", FormMethod.Post))
+        {
+            @Html.Hidden("id", (int)ViewBag.id_libro)
+            @Html.Hidden("nombre", (string)ViewBag.nombre)
+            @Html.Hidden("nombre_autor", (string)ViewBag.nombre_autor)
 
+            <div class="">
+                @Html.Label("lblDescripcion", "Descripción")
+            </div>
+            <div class="">
+                @Html.TextArea("descripcion", "", new { @class = "form-control", @placeholder = "Ingrese la descripción", style = "height: 150px;" })
+            </div>
+
+            <div class="card mt-4">
+                <div class="contenedor_btn">
+                    <button class="btn btn-success w-100" id="btn" type="submit">
+                        Guardar Comentario
+                    </button>
+                </div>
+            </div>
+        }
     </div>
 </div>
     
