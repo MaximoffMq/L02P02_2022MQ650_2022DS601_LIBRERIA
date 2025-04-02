@@ -9,7 +9,7 @@ builder.Services.AddControllersWithViews();
 //INYECCION
 builder.Services.AddDbContext<libreriaDbContex>(opt =>
     opt.UseSqlServer(
-        builder.Configuration.GetConnectionString("liibreriaDbConnection")
+        builder.Configuration.GetConnectionString("libreriaDbConnection")
         )
 );
 //FIN INYECCION
