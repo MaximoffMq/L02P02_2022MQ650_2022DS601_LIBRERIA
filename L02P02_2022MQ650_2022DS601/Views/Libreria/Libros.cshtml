@@ -3,3 +3,52 @@
 *@
 @{
 }
+<div class="barra_superior">
+    <div class="logo_img"></div>
+    <div>
+        <h3>Comentarios por libros</h3>
+        <p>Seleccione el autor -> Seleccione el libro -> Se muestran los comentarios existentes -> Adicione un nuevo comentario</p>
+    </div>
+</div>
+
+<div class="container, container_progress">
+    <div>
+        <div class="">
+            <ul class="progressbar">
+                <li >Autores</li>
+                <li class ="active">Libros</li>
+                <li>Comentarios Existentes</li>
+                <li>Nuevo Comentario</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="espaciador">
+</div>
+
+<div class="carta">
+    <h5 class="subtitulo">Autor: <span class="autor-seleccionado">@ViewData["autorSeleccionado"]</span></h5>
+</div>
+<div class="carta">
+    <h5>Seleccione el Libro del Autor</h5>
+    @if (ViewData["librosDelAutor"] != null && ((List<libros>)ViewData["librosDelAutor"]).Count > 0)
+    {
+        <ul class="list-group">
+            @foreach (var libro in (List<libros>)ViewData["librosDelAutor"])
+            {
+                <li class="card">
+                    <strong>@libro.nombre</strong>
+                    <button class="btn btn-success" style="position: absolute; top: 10px; right: 10px;" onclick="window.location.href='@Url.Action("Comentarios", "Libreria", new { id = libro.id })'">
+                        Seleccionar
+                    </button>
+                </li>
+
+            }
+        </ul>
+    }
+    else
+    {
+        <p class="text-muted">No hay libros registrados para este autor.</p>
+    }
+</div>
