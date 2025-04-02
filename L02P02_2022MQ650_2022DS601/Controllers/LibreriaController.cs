@@ -27,6 +27,18 @@ namespace L02P02_2022MQ650_2022DS601.Controllers
         }
         public IActionResult Libros(int id)
         {
+
+            // Obtener el autor seleccionado
+            var autor = _context.autores.FirstOrDefault(a => a.id == id);
+
+            // Obtener los libros de ese autor
+            var libros = _context.libros.Where(l => l.id_autor == id).ToList();
+
+            // Pasar datos a la vista
+            ViewData["autorSeleccionado"] = autor?.autor;
+            ViewData["librosDelAutor"] = libros;
+
+
             return View();
         }
 

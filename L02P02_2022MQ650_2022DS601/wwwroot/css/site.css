@@ -147,3 +147,9 @@ body {
     color: #5d5df0;
 }
 
+.autor-seleccionado {
+    color: black;
+    font-weight: bold;
+    align-content: center;
+    text-align: center;
+}
